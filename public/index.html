@@ -29,10 +29,10 @@
             background-color: var(--bg-color);
             font-family: 'Manrope', sans-serif;
             color: var(--text-primary);
-            height: 100vh;
+            min-height: 100vh; /* Allow the page to grow on mobile */
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent sideways scroll but keep vertical scroll */
         }
 
         /* 3. Navigation */
@@ -135,7 +135,8 @@
             padding: 20px;
             text-align: center;
             font-size: 12px;
-            color: #444;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         /* --- MOBILE FIXES --- */
