@@ -1,0 +1,8 @@
+node_modules
+.git
+.travis.yml
+travis_key
+travis_key.pub
+deploy_key
+Dockerfile
+README.md
