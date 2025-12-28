@@ -5,3 +5,11 @@ install:
   - npm install
 script:
   - npm test
+deploy:
+  provider: script
+  script:
+    - echo "$DEPLOY_KEY_ENCODED" | base64 --decode > deploy_key
+    - chmod 600 deploy_key
+    - ssh -o StrictHostKeyChecking=no -i deploy_key root@$SERVER_IP "cd /var/www/devops-portfolio-api && git pull origin main && pm2 restart api-production"
+  on:
+    branch: main
