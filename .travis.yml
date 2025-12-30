@@ -8,6 +8,6 @@ script:
 deploy:
   provider: script
   script:
-    - echo "$DEPLOY_KEY_ENCODED" | base64 --decode > deploy_key && chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key SERVER_USER@$SERVER_IP "cd /var/www/devops-portfolio-api && git pull origin main && docker build --pull -t api-production:latest . && docker rm -f api-container || true && docker run -d --restart always -p 127.0.0.1:3000:3000 -e NODE_ENV=production --name api-container api-production:latest"
+    - echo "$DEPLOY_KEY_ENCODED" | base64 --decode > deploy_key && chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key $SERVER_USER@$SERVER_IP "cd /var/www/devops-portfolio-api && git pull origin main && docker build --pull -t api-production:latest . && docker rm -f api-container || true && docker run -d --restart always -p 127.0.0.1:3000:3000 -e NODE_ENV=production --name api-container api-production:latest"
   on:
     branch: main
