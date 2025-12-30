@@ -5,12 +5,17 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK. Deployed via Travis CI!', uptime: process.uptime() });
-});
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/health', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'pages', 'health.html'));
+});
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', 'pages', '404.html'));
 });
 
 if (require.main === module) {
