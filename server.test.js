@@ -5,10 +5,15 @@ describe('System Reliability & Routes', () => {
   
   // ==================== HEALTH CHECK ====================
   describe('Health Endpoint', () => {
-    it('GET /health should return 200 and serve the health HTML page', async () => {
-      const res = await request(app).get('/health');
+    it('GET /health with Accept: application/json should return JSON with status and uptime', async () => {
+      const res = await request(app)
+        .get('/health')
+        .set('Accept', 'application/json');
       expect(res.statusCode).toEqual(200);
-      expect(res.headers['content-type']).toMatch(/text\/html/);
+      expect(res.headers['content-type']).toMatch(/application\/json/);
+      expect(res.body).toHaveProperty('status');
+      expect(res.body).toHaveProperty('uptime');
+      expect(typeof res.body.uptime).toBe('number');
     });
   });
 
