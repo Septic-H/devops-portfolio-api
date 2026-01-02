@@ -11,12 +11,21 @@ services:
       - "127.0.0.1:3000:3000"
     environment:
       - NODE_ENV=production
+    logging:
+    driver: "json-file"
+    options:
+        max-size: "10m"
+        max-file: "3"
 
   # Node Exporter
   node_exporter:
     image: prom/node-exporter:latest
     container_name: node_exporter
     restart: always
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
     ports:
       - "127.0.0.1:9100:9100"
 

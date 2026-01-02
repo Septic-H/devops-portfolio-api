@@ -1,20 +1,24 @@
-# 1. Use an official Node.js runtime as a parent image
+# 1. Use the official Node.js 24 Alpine image
 FROM node:24-alpine
 
-# 2. Set the working directory inside the container
+# 2. Set environment to production
+ENV NODE_ENV=production
+
+# 3. Set the working directory
 WORKDIR /usr/src/app
 
-# 3. Copy package.json and package-lock.json first
+# 4. Copy package files and install only production dependencies
 COPY package*.json ./
+RUN npm install --omit=dev
 
-# 4. Install dependencies
-RUN npm install --production
+# 5. Copy the rest of the application code
+COPY --chown=node:node . .
 
-# 5. Copy the rest of your app code
-COPY . .
+# 6. Switch to the non-root user
+USER node
 
-# 6. Expose the port the app runs on
+# 7. Expose the port (Documentation only)
 EXPOSE 3000
 
-# 7. Define the command to run your app
+# 8. Define the command to run the app
 CMD ["node", "server.js"]
