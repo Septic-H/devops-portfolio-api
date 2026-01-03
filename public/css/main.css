@@ -303,9 +303,12 @@ p {
 
 .profile-title {
     font-size: 1rem;
-    color: var(--text-secondary);
     font-weight: 400;
     margin-bottom: 24px;
+    background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-green-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .profile-status {
@@ -313,11 +316,15 @@ p {
     align-items: center;
     gap: 8px;
     font-size: 13px;
-    color: var(--accent-green);
-    background: rgba(var(--accent-green-midnight-rgb), 0.3);
+    color: var(--text-primary);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: 8px 16px;
     border-radius: 50px;
-    border: 1px solid rgba(var(--accent-green-midnight-rgb), 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .status-dot {
