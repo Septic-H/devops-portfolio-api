@@ -11,22 +11,19 @@
     <link rel="icon" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/favicon.svg">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#121317">
+    <meta name="theme-color" content="#1d2021">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Huzaifa">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-    <!-- Spotlight Effect -->
-    <div class="spotlight"></div>
-
     <!-- Skip to content -->
     <a href="#content" class="skip-to-content">Skip to Content</a>
 
@@ -118,20 +115,21 @@
                     <h2 class="section-title-mobile">About</h2>
                 </div>
                 <div class="section-content">
-                    <p class="mb-4">
-                        I am a <strong>Backend and DevOps Engineer</strong> dedicated to designing scalable, high-performance
-                        architectures. My core stack leverages <strong>NestJS</strong>, <strong>GraphQL</strong>, and
-                        <strong>MongoDB</strong> to build flexible data layers and robust <strong>real-time APIs</strong>. I treat
-                        infrastructure as a first-class citizen, using <strong>Docker</strong> to containerize applications and
-                        ensure reliability from development to production.
-                    </p>
-                    <p>
-                        Beyond the code, I am passionate about the full spectrum of computing. I spend my time optimizing automated
-                        <strong>CI/CD workflows</strong>, experimenting with <strong>Machine Learning</strong> models, and
-                        fine-tuning my custom <strong>Linux</strong> environment. I believe in practical, hands-on problem solving,
-                        whether that means training an <strong>AI tool</strong> or configuring a server kernel, because the best way
-                        to master a system is to build it yourself.
-                    </p>
+                    <!-- Terminal Window -->
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <span class="terminal-button close"></span>
+                            <span class="terminal-button minimize"></span>
+                            <span class="terminal-button maximize"></span>
+                            <span class="terminal-title">huzaifa@tech: ~/about</span>
+                        </div>
+                        <div class="terminal-body">
+                            <span class="terminal-prompt">$</span>
+                            <span id="typed-text"
+                                data-text="I am a Backend and DevOps Engineer dedicated to designing scalable, high-performance architectures. My core stack leverages NestJS, GraphQL, and MongoDB to build flexible data layers and robust real-time APIs. I treat infrastructure as a first-class citizen, using Docker to containerize applications and ensure reliability from development to production. Beyond the code, I am passionate about the full spectrum of computing. I spend my time optimizing automated CI/CD workflows, experimenting with Machine Learning models, and fine-tuning my custom Linux environment. I believe in practical, hands-on problem solving, whether that means training an AI tool or configuring a server kernel, because the best way to master a system is to build it yourself."></span>
+                            <span class="cursor" style="display: none;">█</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 

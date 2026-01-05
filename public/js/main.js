@@ -1,33 +1,48 @@
 // ========================================
-// MAIN.JS - Interactive Features
+// MAIN.JS
 // ========================================
 
-// Spotlight Effect - Mouse Tracking with smooth interpolation
-let mouseX = 0;
-let mouseY = 0;
-let currentX = 0;
-let currentY = 0;
-const ease = 0.15; // Smooth easing factor
+// Typewriter Effect for About Section
+function typewriterEffect() {
+    const typedTextElement = document.getElementById('typed-text');
+    const cursorElement = document.querySelector('.cursor');
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+    if (!typedTextElement) return;
 
-function updateSpotlight() {
-    const spotlight = document.querySelector('.spotlight');
-    if (spotlight) {
-        // Smooth interpolation
-        currentX += (mouseX - currentX) * ease;
-        currentY += (mouseY - currentY) * ease;
-        
-        spotlight.style.setProperty('--mouse-x', `${currentX}px`);
-        spotlight.style.setProperty('--mouse-y', `${currentY}px`);
+    // Get the full text from the data attribute
+    const fullText = typedTextElement.getAttribute('data-text');
+
+    if (!fullText) return;
+
+    let charIndex = 0;
+    const typingSpeed = 15; // milliseconds per character
+
+    // Clear initial content
+    typedTextElement.textContent = '';
+
+    function typeCharacter() {
+        if (charIndex < fullText.length) {
+            typedTextElement.textContent += fullText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeCharacter, typingSpeed);
+        } else {
+            // Typing complete, show cursor
+            if (cursorElement) {
+                cursorElement.style.display = 'inline-block';
+            }
+        }
     }
-    requestAnimationFrame(updateSpotlight);
+
+    // Start typing after a brief delay
+    setTimeout(() => {
+        typeCharacter();
+    }, 500);
 }
 
-updateSpotlight();
+// Initialize typewriter on page load
+window.addEventListener('DOMContentLoaded', () => {
+    typewriterEffect();
+});
 
 // Active Navigation on Scroll
 const sections = document.querySelectorAll('.section');
@@ -43,10 +58,10 @@ const observerCallback = (entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const sectionId = entry.target.getAttribute('id');
-            
+
             // Remove active class from all links
             navLinks.forEach(link => link.classList.remove('active'));
-            
+
             // Add active class to corresponding link
             const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
             if (activeLink) {
@@ -68,9 +83,9 @@ navLinks.forEach(link => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
         const targetSection = document.querySelector(targetId);
-        
+
         if (targetSection) {
-            targetSection.scrollIntoView({ 
+            targetSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -89,4 +104,5 @@ document.addEventListener('mousedown', () => {
     document.body.classList.remove('keyboard-nav');
 });
 
-console.log('Portfolio loaded successfully!');
+console.log('%c[SYSTEM] Portfolio initialized successfully!', 'color: #00ff41; font-weight: bold;');
+console.log('%c[STATUS] All modules loaded', 'color: #00ffff;');
