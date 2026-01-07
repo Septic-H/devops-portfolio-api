@@ -30,7 +30,7 @@ A production-grade, containerized Node.js application. Deployed securely on a ha
 ## The Pipeline
 1.  **Push:** Commit code to `main`.
 2.  **Test:** Travis CI runs unit tests.
-3.  **Deploy:** Pipeline SSHs into server (as non-root user).
+3.  **Deploy:** Pipeline SSHs into server.
 4.  **Update:** Docker Compose rebuilds the app container while keeping monitoring services running.
 
 ## Quick Start
@@ -38,7 +38,7 @@ A production-grade, containerized Node.js application. Deployed securely on a ha
 ### Run Locally (Full Stack)
 ```bash
 # Clone and run everything (App + Prometheus + Grafana)
-git clone [https://github.com/Septic-H/devops-portfolio-api.git](https://github.com/Septic-H/devops-portfolio-api.git)
+git clone https://github.com/Septic-H/devops-portfolio-api.git
 docker compose up -d --build
 
 # API: http://localhost:3000
