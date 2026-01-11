@@ -2,9 +2,9 @@
 ![Docker](https://img.shields.io/badge/Docker_Compose-v2-blue)
 ![Monitoring](https://img.shields.io/badge/Prometheus_%26_Grafana-Active-orange)
 
-# DevOps Portfolio API
+# DevOps Portfolio: Microservices Architecture
 
-A production-grade, containerized Node.js application. Deployed securely on a hardened Linux server with a fully automated CI/CD pipeline and real-time observability stack.
+A production-grade, distributed web application built with a **Microservices Architecture**. The application is decoupled into independent frontend and backend services, orchestrated via Docker, and deployed securely on a hardened Linux server.
 
 **Live URL:** https://huzaifaj.tech/
 
@@ -12,6 +12,24 @@ A production-grade, containerized Node.js application. Deployed securely on a ha
 *(Air-gapped Grafana dashboard accessing real-time server metrics via SSH Tunnel)*
 
 ![Grafana Dashboard](./dashboard.png)
+
+## Architecture Overview
+
+This project implements the **Reverse Proxy Pattern** to route traffic between isolated containers:
+
+```mermaid
+graph LR
+    User(User) --> NginxHost[Host Nginx Gateway]
+    NginxHost -- / --> Frontend[Frontend Service :8080]
+    NginxHost -- /api/ --> Backend[Backend Service :3000]
+    Prometheus --> Backend
+    Prometheus --> NodeExporter
+```
+* Service A (Frontend): Lightweight Nginx container serving static assets (HTML/CSS/JS).
+
+* Service B (Backend): Node.js/Express API handling business logic and health checks.
+
+* Gateway: Host-level Nginx acting as a Layer 7 Reverse Proxy to terminate SSL and route traffic.
 
 ## Tech Stack
 * **Runtime:** Node.js & Express
@@ -29,9 +47,9 @@ A production-grade, containerized Node.js application. Deployed securely on a ha
 
 ## The Pipeline
 1.  **Push:** Commit code to `main`.
-2.  **Test:** Travis CI runs unit tests.
-3.  **Deploy:** Pipeline SSHs into server.
-4.  **Update:** Docker Compose rebuilds the app container while keeping monitoring services running.
+2.  **Build:** Travis CI builds independent images for s`ervices/frontend` and `services/backend`.
+3.  **Test:** Unit tests run specifically against the Backend API logic.
+4.  **Deploy:** Pipeline SSHs into the server, fetches changes, and rebuilds containers using `--remove-orphans` to clean up old microservices.
 
 ## Quick Start
 
@@ -43,3 +61,13 @@ docker compose up -d --build
 
 # API: http://localhost:3000
 # Grafana: http://localhost:3001 (Default: admin/admin)
+```
+
+### Directory Structure
+```bash
+├── services/
+│   ├── frontend/   # Nginx Container (Static Site)
+│   └── backend/    # Node.js Container (API)
+├── docker-compose.yml
+└── .travis.yml
+```
