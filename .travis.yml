@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - "stable"
 install:
-  - npm install
+  - cd services/backend && npm install
 script:
-  - npm test
+  - cd services/backend && npm test
 deploy:
   provider: script
   script: echo "$DEPLOY_KEY_ENCODED" | base64 --decode > deploy_key && chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i deploy_key $SERVER_USER@$SERVER_IP "cd /var/www/devops-portfolio-api && git pull origin main && docker compose up -d --build --remove-orphans"

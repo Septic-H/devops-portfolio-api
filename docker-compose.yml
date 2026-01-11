@@ -2,20 +2,29 @@ version: '3.8'
 
 services:
   # Node.js App
-  api:
-    container_name: api-container
-    build: .
-    image: api-production:latest
+  # Service 1: The Static Frontend
+  frontend:
+    build: ./services/frontend
+    container_name: micro-frontend
     restart: always
     ports:
+      # Maps Host Port 8080 -> Container Port 80
+      - "127.0.0.1:8080:80"
+    networks:
+      - app-network
+
+  # Service 2: The API Backend
+  backend:
+    build: ./services/backend
+    container_name: micro-backend
+    restart: always
+    ports:
+      # Maps Host Port 3000 -> Container Port 3000
       - "127.0.0.1:3000:3000"
     environment:
       - NODE_ENV=production
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    networks:
+      - app-network
 
   # Node Exporter
   node_exporter:
@@ -53,3 +62,8 @@ services:
 volumes:
   prometheus_data:
   grafana_data:
+
+# Create a custom network so services can talk to each other
+networks:
+  app-network:
+    driver: bridge
