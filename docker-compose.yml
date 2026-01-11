@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Node.js App
   # Service 1: The Static Frontend
