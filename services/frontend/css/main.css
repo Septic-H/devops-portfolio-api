@@ -584,13 +584,17 @@ body {
 }
 
 .cursor {
-    display: inline-block;
+    display: none; /* Hidden by default, shown by JS when typing starts */
     width: 0.6em;
     height: 1.2em;
     background-color: var(--text-primary);
     margin-left: 2px;
     animation: blink 1s infinite;
     vertical-align: middle;
+}
+
+.cursor.visible {
+    display: inline-block;
 }
 
 @keyframes blink {

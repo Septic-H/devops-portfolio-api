@@ -28,7 +28,7 @@ function typewriterEffect() {
         } else {
             // Typing complete, show cursor
             if (cursorElement) {
-                cursorElement.style.display = 'inline-block';
+                cursorElement.classList.add('visible');
             }
         }
     }
