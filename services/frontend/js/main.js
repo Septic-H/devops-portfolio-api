@@ -42,7 +42,95 @@ function typewriterEffect() {
 // Initialize typewriter on page load
 window.addEventListener('DOMContentLoaded', () => {
     typewriterEffect();
+    initializeMenuToggle();
+    initializeSidebarToggle();
+    initializeSectionCollapse();
 });
+
+// Mobile Menu Toggle
+function initializeMenuToggle() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (!menuToggle || !navMenu) return;
+
+    menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('mobile-active');
+        sidebar.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking a nav link on mobile
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('mobile-active');
+                sidebar.classList.remove('menu-open');
+            }
+        });
+    });
+}
+
+// Desktop Sidebar Toggle (Red Button)
+function initializeSidebarToggle() {
+    const toggleButton = document.querySelector('.sidebar-toggle-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const container = document.querySelector('.container');
+
+    if (!toggleButton || !sidebar) return;
+
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        container.classList.toggle('sidebar-collapsed');
+        toggleButton.classList.toggle('sidebar-collapsed');
+        
+        // Update aria-label based on state
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        toggleButton.setAttribute('aria-label', isCollapsed ? 'Expand sidebar' : 'Collapse sidebar');
+        toggleButton.setAttribute('title', isCollapsed ? 'Expand sidebar' : 'Collapse sidebar');
+    });
+}
+
+// Section Collapse on Mobile
+function initializeSectionCollapse() {
+    const sectionHeaders = document.querySelectorAll('.section-header-mobile');
+
+    sectionHeaders.forEach(header => {
+        const toggleSection = () => {
+            const section = header.closest('.section');
+            const content = section.querySelector('.section-content');
+            const indicator = header.querySelector('.collapse-indicator');
+            const isExpanded = header.getAttribute('aria-expanded') === 'true';
+
+            // Toggle expanded state
+            header.setAttribute('aria-expanded', !isExpanded);
+            section.classList.toggle('collapsed');
+
+            // Update indicator
+            if (indicator) {
+                indicator.textContent = isExpanded ? '+' : '−';
+            }
+        };
+
+        // Click event
+        header.addEventListener('click', toggleSection);
+
+        // Keyboard support
+        header.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleSection();
+            }
+        });
+    });
+}
 
 // Active Navigation on Scroll
 const sections = document.querySelectorAll('.section');

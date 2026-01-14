@@ -27,14 +27,29 @@
     <!-- Skip to content -->
     <a href="#content" class="skip-to-content">Skip to Content</a>
 
+    <!-- Floating Sidebar Toggle -->
+    <button class="sidebar-toggle-btn" aria-label="Toggle sidebar" title="Toggle sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="toggle-icon">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <line x1="9" y1="3" x2="9" y2="21" />
+        </svg>
+    </button>
+
     <div class="container">
         <!-- Left Sidebar: Sticky Header -->
         <header class="sidebar">
             <div class="sidebar-content">
                 <div class="header-info">
-                    <h1 class="header-name">
-                        <a href="/">Huzaifa</a>
-                    </h1>
+                    <div class="header-top">
+                        <h1 class="header-name">
+                            <a href="/">Huzaifa</a>
+                        </h1>
+                        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                    </div>
                     <h2 class="header-title">Software Engineering Student</h2>
                     <p class="header-description">
                         I turn "it works on my machine" into "it works in production."
@@ -123,8 +138,9 @@
         <main id="content" class="main-content">
             <!-- About Section -->
             <section id="about" class="section" aria-label="About me">
-                <div class="section-header-mobile">
+                <div class="section-header-mobile" role="button" tabindex="0" aria-expanded="true">
                     <h2 class="section-title-mobile">About</h2>
+                    <span class="collapse-indicator">−</span>
                 </div>
                 <div class="section-content">
                     <!-- Terminal Window -->
@@ -147,8 +163,9 @@
 
             <!-- Experience Section -->
             <section id="experience" class="section" aria-label="Work experience">
-                <div class="section-header-mobile">
+                <div class="section-header-mobile" role="button" tabindex="0" aria-expanded="true">
                     <h2 class="section-title-mobile">Experience</h2>
+                    <span class="collapse-indicator">−</span>
                 </div>
                 <div class="section-content">
                     <ol class="experience-list">
@@ -282,8 +299,9 @@
 
             <!-- Open Source Section -->
             <section id="opensource" class="section" aria-label="Open source contributions">
-                <div class="section-header-mobile">
+                <div class="section-header-mobile" role="button" tabindex="0" aria-expanded="true">
                     <h2 class="section-title-mobile">Open Source</h2>
+                    <span class="collapse-indicator">−</span>
                 </div>
                 <div class="section-content">
                     <ol class="experience-list">
@@ -327,8 +345,9 @@
 
             <!-- Projects Section -->
             <section id="projects" class="section" aria-label="Selected projects">
-                <div class="section-header-mobile">
+                <div class="section-header-mobile" role="button" tabindex="0" aria-expanded="true">
                     <h2 class="section-title-mobile">Projects</h2>
+                    <span class="collapse-indicator">−</span>
                 </div>
                 <div class="section-content">
                     <ul class="projects-list">
@@ -475,8 +494,9 @@
 
             <!-- Leadership Section -->
             <section id="leadership" class="section" aria-label="Leadership Experience">
-                <div class="section-header-mobile">
+                <div class="section-header-mobile" role="button" tabindex="0" aria-expanded="true">
                     <h2 class="section-title-mobile">Leadership Experience</h2>
+                    <span class="collapse-indicator">−</span>
                 </div>
                 <div class="section-content">
                     <ol class="experience-list">
