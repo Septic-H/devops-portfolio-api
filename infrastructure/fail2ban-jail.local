@@ -1,0 +1,26 @@
+[DEFAULT]
+# Ban hosts for 1 hour: 3600 seconds
+bantime = 3600
+
+# Inspect the last 10 minutes of logs
+findtime = 600
+
+# Max retries before banning
+maxretry = 5
+
+# Who to ban
+banaction = iptables-multiport
+
+# --- JAILS ---
+
+[sshd]
+enabled = true
+port    = ssh
+logpath = /var/log/auth.log
+maxretry = 3
+
+[nginx-botsearch]
+enabled  = true
+port     = http,https
+logpath  = /var/log/nginx/access.log
+maxretry = 3
