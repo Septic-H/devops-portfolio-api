@@ -1,0 +1,23 @@
+/var/log/fail2ban.log {
+    # Check weekly
+    weekly
+
+    # Force rotation if it hits 10MB
+    maxsize 10M
+
+    # Keep 4 weeks of history
+    rotate 4
+
+    # Compress old logs
+    compress
+    delaycompress
+
+    # Don't error if file is missing
+    missingok
+    notifempty
+
+    # Tell Fail2Ban to start a new log file
+    postrotate
+        fail2ban-client flushlogs 1>/dev/null || true
+    endscript
+}
