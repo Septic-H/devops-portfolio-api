@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/Septic-H/devops-portfolio.svg?token=NuVMfJXHnnWDLnoMrTAx&branch=main)](https://app.travis-ci.com/Septic-H/devops-portfolio-api)
+[![Build Status](https://app.travis-ci.com/Septic-H/devops-portfolio.svg?token=NuVMfJXHnnWDLnoMrTAx&branch=main)](https://app.travis-ci.com/Septic-H/devops-portfolio)
 ![Docker](https://img.shields.io/badge/Docker_Compose-v2-blue)
 ![Monitoring](https://img.shields.io/badge/Prometheus_%26_Grafana-Active-orange)
 
