@@ -1,4 +1,6 @@
 /var/log/fail2ban.log {
+    su root root
+    
     # Check weekly
     weekly
 
