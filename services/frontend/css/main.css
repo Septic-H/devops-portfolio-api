@@ -163,8 +163,21 @@ body {
 
     .sidebar.collapsed {
         width: 80px;
-        border-right: 1px solid var(--terminal-border);
         padding-right: 1rem;
+    }
+
+    .sidebar.collapsed .sidebar-content::after {
+        content: '';
+        position: absolute;
+        right: -1rem;
+        top: 2rem;
+        bottom: 2rem;
+        width: 1px;
+        background-color: var(--terminal-border);
+    }
+
+    .sidebar.collapsed .sidebar-content {
+        position: relative;
     }
 
     .sidebar.collapsed .header-name,
@@ -181,9 +194,7 @@ body {
 
     .sidebar .header-name,
     .sidebar .header-title,
-    .sidebar .social-links,
-    .sidebar .nav-text,
-    .sidebar .nav-indicator {
+    .sidebar .social-links {
         transition: opacity 0.2s ease-in-out, max-width 0.4s ease-in-out, margin 0.4s ease;
         opacity: 1;
         max-width: 400px;
