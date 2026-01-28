@@ -916,6 +916,13 @@ body {
     color: var(--accent-amber);
 }
 
+.company-logo {
+    height: 1.6em;
+    width: auto;
+    vertical-align: text-bottom;
+    margin-right: 0.4em;
+}
+
 .experience-description {
     margin-top: 0.75rem;
     font-size: 0.875rem;
